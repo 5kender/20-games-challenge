@@ -1,0 +1,167 @@
+[gd_scene load_steps=19 format=3 uid="uid://dj4s2ry5dmkhd"]
+
+[ext_resource type="Texture2D" uid="uid://ck6iomqgddb08" path="res://Animals_png_set_by_mossi889-d4uye4q.png" id="1_0f027"]
+[ext_resource type="Texture2D" uid="uid://d07uqdtxp8i6r" path="res://grass-plant-field-lawn-meadow-prairie-966755-pxhere.com.jpg" id="1_2c62f"]
+[ext_resource type="Script" uid="uid://c0fdh502roul8" path="res://move_player.gd" id="2_gyfs4"]
+[ext_resource type="Script" uid="uid://bnf1lof4ul0rh" path="res://ball.gd" id="4_8mm7a"]
+[ext_resource type="Texture2D" uid="uid://b62f2q0ypmv71" path="res://Jupiter_(transparent).png" id="4_d5x1h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8mm7a"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="InputEventAction" id="InputEventAction_gyfs4"]
+action = &"p1_up"
+
+[sub_resource type="InputEventAction" id="InputEventAction_d5x1h"]
+action = &"p1_down"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3jxj"]
+size = Vector2(30.732096, 104)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hq1ik"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="InputEventAction" id="InputEventAction_8mm7a"]
+action = &"p2_up"
+
+[sub_resource type="InputEventAction" id="InputEventAction_hq1ik"]
+action = &"p2_down"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nfk4m"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
+size = Vector2(1376.5, 50)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_66tet"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mm7a"]
+radius = 8.006942
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mm7a"]
+font_size = 90
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 1, 0.049999952, 0.75686276)
+shadow_offset = Vector2(4, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(582, 268)
+scale = Vector2(0.72407407, 0.72407407)
+texture = ExtResource("1_2c62f")
+
+[node name="Putois" type="StaticBody2D" parent="."]
+position = Vector2(26, 324)
+scale = Vector2(1.465, 1.465)
+physics_material_override = SubResource("PhysicsMaterial_8mm7a")
+script = ExtResource("2_gyfs4")
+_speed = 350
+_action_up = SubResource("InputEventAction_gyfs4")
+_action_down = SubResource("InputEventAction_d5x1h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Putois"]
+position = Vector2(-2.7303758, -0.6826019)
+rotation = 1.5707964
+scale = Vector2(0.6956237, 0.62016237)
+texture = ExtResource("1_0f027")
+region_enabled = true
+region_rect = Rect2(146, 260.5, 168, 83)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Putois"]
+shape = SubResource("RectangleShape2D_o3jxj")
+
+[node name="Tortue" type="StaticBody2D" parent="."]
+position = Vector2(1121, 324)
+scale = Vector2(1.465, 1.465)
+physics_material_override = SubResource("PhysicsMaterial_hq1ik")
+script = ExtResource("2_gyfs4")
+_speed = 350
+_action_up = SubResource("InputEventAction_8mm7a")
+_action_down = SubResource("InputEventAction_hq1ik")
+_flip_y = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Tortue"]
+position = Vector2(3.4129486, 1.3651879)
+rotation = -1.5707964
+scale = Vector2(0.6464605, 0.54825264)
+texture = ExtResource("1_0f027")
+region_enabled = true
+region_rect = Rect2(409, 249.5, 180, 91)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tortue"]
+shape = SubResource("RectangleShape2D_o3jxj")
+
+[node name="MurTop" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_nfk4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MurTop"]
+position = Vector2(585.5, -25)
+shape = SubResource("RectangleShape2D_2c62f")
+
+[node name="MurBot" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_66tet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MurBot"]
+position = Vector2(586.75, 673)
+shape = SubResource("RectangleShape2D_2c62f")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("4_8mm7a")
+_speed = 13
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.061, 0.061)
+texture = ExtResource("4_d5x1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_8mm7a")
+
+[node name="ScoreP1" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 562.0
+offset_bottom = 139.0
+text = "0"
+label_settings = SubResource("LabelSettings_8mm7a")
+horizontal_alignment = 2
+
+[node name="ScoreP2" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 595.0
+offset_top = 15.0
+offset_right = 1141.0
+offset_bottom = 139.21754
+text = "0"
+label_settings = SubResource("LabelSettings_8mm7a")
+
+[node name="Area1" type="Area2D" parent="."]
+position = Vector2(-74, 12)
+scale = Vector2(2.9522557, -42.90932)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area1"]
+position = Vector2(-22.355785, -7.1080127)
+shape = SubResource("RectangleShape2D_8mm7a")
+
+[node name="Area2" type="Area2D" parent="."]
+position = Vector2(-74, 12)
+scale = Vector2(2.9522557, -42.90932)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2"]
+position = Vector2(469.4715, -7.2012324)
+shape = SubResource("RectangleShape2D_8mm7a")
+
+[connection signal="body_entered" from="Area1" to="Ball" method="_on_area_1_body_entered"]
+[connection signal="body_entered" from="Area2" to="Ball" method="_on_area_2_body_entered"]
