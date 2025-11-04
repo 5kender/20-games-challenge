@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ea1o7gh12shr"]
+
+[ext_resource type="Script" uid="uid://bdua28l3gc67w" path="res://cd.gd" id="1_28dtb"]
+[ext_resource type="Texture2D" uid="uid://crii2ihlj8ctc" path="res://CD-ROM.png" id="2_xarhu"]
+[ext_resource type="Script" uid="uid://berpjhc6qnvmy" path="res://sprite_rotate.gd" id="3_jp40q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mm7a"]
+
+[node name="CD" type="StaticBody2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_28dtb")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.0728836e-06, 0)
+scale = Vector2(0.095, 0.095)
+texture = ExtResource("2_xarhu")
+offset = Vector2(-3.355, 1.04)
+script = ExtResource("3_jp40q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.72, 2.72)
+shape = SubResource("CircleShape2D_8mm7a")

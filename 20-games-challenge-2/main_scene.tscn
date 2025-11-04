@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvj4t1np3ys55"]
+
+[ext_resource type="Texture2D" uid="uid://dwuuk0q0dyv2n" path="res://cloud-sky-clouds-nature-air-atmosphere-1635109-pxhere.com.jpg" id="1_0f027"]
+[ext_resource type="Texture2D" uid="uid://ddbe8qcrpnxhq" path="res://mowe-vogel-fliegen-clipart.png" id="2_2c62f"]
+[ext_resource type="Script" uid="uid://u0iin6d7rhqv" path="res://player.gd" id="2_gyfs4"]
+[ext_resource type="Script" uid="uid://c7awhqp8ndgnu" path="res://cd_launcher.gd" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://d2h1w66cx6v0s" path="res://game_manager.gd" id="6_hq1ik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mm7a"]
+font_size = 60
+font_color = Color(0.10980392, 0.93333334, 1, 1)
+outline_size = 10
+outline_color = Color(0.10980392, 0.93333334, 1, 1)
+shadow_size = 15
+shadow_color = Color(0, 0.6701407, 0.91239554, 1)
+shadow_offset = Vector2(-1.025, 3.82)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d5x1h"]
+font_size = 30
+font_color = Color(0.10980392, 0.93333334, 1, 1)
+outline_size = 5
+outline_color = Color(0.10980392, 0.93333334, 1, 1)
+shadow_size = 6
+shadow_color = Color(0, 0.6701407, 0.91239554, 1)
+shadow_offset = Vector2(-0.5, 2)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0f027"]
+normal = Vector2(0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gyfs4"]
+radius = 13.0
+height = 46.0
+
+[node name="MainScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_8mm7a")
+horizontal_alignment = 1
+
+[node name="Highscore" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_d5x1h")
+horizontal_alignment = 1
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(575, 262)
+scale = Vector2(0.7407407, 0.7407407)
+texture = ExtResource("1_0f027")
+metadata/_edit_lock_ = true
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+
+[node name="Bot" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(0, 648)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_0f027")
+
+[node name="Top" type="CollisionShape2D" parent="Boundary"]
+shape = SubResource("WorldBoundaryShape2D_0f027")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(299, 236)
+script = ExtResource("2_gyfs4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_2c62f")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(8, 7)
+rotation = 1.2304571
+shape = SubResource("CapsuleShape2D_gyfs4")
+
+[node name="CdLauncher" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_8mm7a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+ignore_time_scale = true
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("6_hq1ik")
+
+[connection signal="timeout" from="Timer" to="GameManager" method="_on_timer_timeout"]
