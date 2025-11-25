@@ -1,0 +1,232 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1rkypjndpcwq"]
+
+[ext_resource type="Script" uid="uid://nnm4abjtbu1a" path="res://lizard.gd" id="1_3htrm"]
+[ext_resource type="Texture2D" uid="uid://b2nhr2rwxxgbu" path="res://lizard_sliced.png" id="1_lhscj"]
+
+[sub_resource type="Animation" id="Animation_lhscj"]
+resource_name = "walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leg Front Right:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.3961897402027126, 1.4852751934471748, 0.3961897402027126]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Leg Back Left:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.835332, 0.5253556, 1.835332]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Leg Front Left:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.1691979, -0.085587986, -1.1691979]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Leg Back Right:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.30159068, -1.4606427, -0.30159068]
+}
+
+[sub_resource type="Animation" id="Animation_3htrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leg Front Right:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.9424777960769379]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Leg Back Left:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1711541]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Leg Front Left:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.73490113]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Leg Back Right:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.9489325]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3htrm"]
+_data = {
+&"RESET": SubResource("Animation_3htrm"),
+&"walk": SubResource("Animation_lhscj")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lhscj"]
+radius = 7.0030985
+height = 82.39176
+
+[node name="Lizard" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_3htrm")
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(16.999998, -1)
+rotation = -0.034906585
+scale = Vector2(0.438, 0.438)
+
+[node name="Leg Front Right" type="Sprite2D" parent="Sprites"]
+position = Vector2(-115, -15)
+rotation = 0.9424778
+texture = ExtResource("1_lhscj")
+offset = Vector2(-31.611443, -13.758148)
+region_enabled = true
+region_rect = Rect2(48, 17, 80, 45)
+
+[node name="Leg Front Left" type="Sprite2D" parent="Sprites"]
+position = Vector2(-110, 23)
+rotation = -0.73490113
+texture = ExtResource("1_lhscj")
+offset = Vector2(-28.073082, 14.553005)
+region_enabled = true
+region_rect = Rect2(52, 162, 73, 52)
+
+[node name="Leg Back Right" type="Sprite2D" parent="Sprites"]
+position = Vector2(40.97005, -1.4237616)
+rotation = -0.9489325
+texture = ExtResource("1_lhscj")
+offset = Vector2(52.703056, -17.656588)
+region_enabled = true
+region_rect = Rect2(237, 7, 106, 74)
+
+[node name="Leg Back Left" type="Sprite2D" parent="Sprites"]
+position = Vector2(49, 14.999998)
+rotation = 1.1711541
+texture = ExtResource("1_lhscj")
+offset = Vector2(41.737984, 8.358477)
+region_enabled = true
+region_rect = Rect2(243, 152, 107, 65)
+
+[node name="Body" type="Sprite2D" parent="Sprites"]
+position = Vector2(64, 0)
+texture = ExtResource("1_lhscj")
+region_enabled = true
+region_rect = Rect2(0, 83, 576, 69)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
+libraries = {
+&"": SubResource("AnimationLibrary_3htrm")
+}
+speed_scale = 8.0
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+visible = false
+
+[node name="Base" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="Bottom Body" type="Bone2D" parent="Skeleton2D/Base"]
+position = Vector2(48, -2)
+rest = Transform2D(1, 0, 0, 1, 48, -2)
+
+[node name="Tail" type="Bone2D" parent="Skeleton2D/Base/Bottom Body"]
+position = Vector2(21, 0)
+rest = Transform2D(1, 0, 0, 1, 21, 0)
+auto_calculate_length_and_angle = false
+length = 79.333
+bone_angle = -0.9889998
+
+[node name="Right Leg" type="Bone2D" parent="Skeleton2D/Base/Bottom Body"]
+position = Vector2(-17, -41)
+rest = Transform2D(1, 0, 0, 1, -17, -41)
+auto_calculate_length_and_angle = false
+length = 31.09
+bone_angle = -13.609998
+
+[node name="Left Leg" type="Bone2D" parent="Skeleton2D/Base/Bottom Body"]
+position = Vector2(-10, 39)
+rest = Transform2D(1, 0, 0, 1, -10, 39)
+auto_calculate_length_and_angle = false
+length = 29.395
+bone_angle = 18.04
+
+[node name="Top Body" type="Bone2D" parent="Skeleton2D/Base"]
+position = Vector2(-120, -3)
+rest = Transform2D(1, 0, 0, 1, -120, -3)
+
+[node name="Right Leg" type="Bone2D" parent="Skeleton2D/Base/Top Body"]
+position = Vector2(8, -33)
+rest = Transform2D(1, 0, 0, 1, 8, -33)
+auto_calculate_length_and_angle = false
+length = 30.675
+bone_angle = -148.63397
+
+[node name="Left Leg" type="Bone2D" parent="Skeleton2D/Base/Top Body"]
+position = Vector2(17, 42)
+rest = Transform2D(1, 0, 0, 1, 17, 42)
+auto_calculate_length_and_angle = false
+length = 26.795
+bone_angle = 122.60099
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Base/Top Body"]
+position = Vector2(-21, -3)
+rest = Transform2D(1, 0, 0, 1, -32, -4)
+auto_calculate_length_and_angle = false
+length = 43.102
+bone_angle = 184.10297
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-14.79, 0)
+rotation = 1.5969763
+shape = SubResource("CapsuleShape2D_lhscj")

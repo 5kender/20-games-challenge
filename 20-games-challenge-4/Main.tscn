@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bng88fgxd1twa"]
+
+[ext_resource type="PackedScene" uid="uid://d1rkypjndpcwq" path="res://lizard.tscn" id="1_glv2v"]
+[ext_resource type="Texture2D" uid="uid://cg7j3ga8e8qex" path="res://pexels-japy-17261493.jpg" id="1_uu6xs"]
+[ext_resource type="Texture2D" uid="uid://bbgg87whjk7rp" path="res://route.png" id="3_r0du0"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_r0du0"]
+a = Vector2(687, 72)
+b = Vector2(687, 187)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r0du0"]
+font_size = 106
+font_color = Color(1, 0.23137255, 0.1882353, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.5058824)
+shadow_offset = Vector2(6, 6)
+stacked_shadow_count = 2
+stacked_shadow_0/offset = Vector2(2, 2)
+stacked_shadow_0/color = Color(2.0696223e-06, 0.68438154, 0.29395917, 1)
+stacked_shadow_1/offset = Vector2(4, 4)
+stacked_shadow_1/color = Color(0.7490196, 0.8666667, 0.101960786, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(573, 322)
+scale = Vector2(0.61, 0.61)
+texture = ExtResource("1_uu6xs")
+
+[node name="Route" type="Sprite2D" parent="."]
+position = Vector2(569.55554, 319.125)
+scale = Vector2(0.64421296, 0.6442129)
+texture = ExtResource("3_r0du0")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(5, 0)
+points = PackedVector2Array(687, 72, 687, 187)
+width = 1.5
+default_color = Color(0.047058824, 0.019607844, 0.10980392, 0.32156864)
+
+[node name="line" type="Area2D" parent="Line2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/line"]
+shape = SubResource("SegmentShape2D_r0du0")
+
+[node name="Lizard" parent="." instance=ExtResource("1_glv2v")]
+position = Vector2(653, 135)
+scale = Vector2(0.635, 0.635)
+
+[node name="Score" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 486.0
+offset_top = 458.0
+offset_right = 687.0
+offset_bottom = 607.0
+text = "0"
+label_settings = SubResource("LabelSettings_r0du0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AreaOuterGrass" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaOuterGrass"]
+polygon = PackedVector2Array(693, 71, 565, 73, 372, 73, 267, 78, 183, 91, 138, 109, 103, 140, 73, 179, 55, 224, 44, 266, 41, 304, 40, 360, 46, 399, 58, 440, 79, 475, 119, 521, 160, 546, 213, 564, 267, 575, 309, 573, 347, 558, 400, 531, 440, 499, 469, 467, 493, 432, 523, 394, 546.53064, 374.62756, 567, 367, 598, 367, 634, 381, 670, 409, 726, 474, 769, 518, 809, 544, 869, 562, 929, 565, 989, 553, 1044, 524, 1083, 488, 1104, 450, 1110, 407, 1116, 344, 1111, 275, 1090, 220, 1058, 174, 1018, 144, 916, 98, 844, 82, 767, 74, 730, 72, 660, 72, 580, -53, 783, -52, 1222, 137, 1234, 464, 1001, 673, 731, 642, 588, 511, 503, 657, -6, 643, -134, 278, -4, -2, 578, -46)
+
+[node name="AreaInnerGrass" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaInnerGrass"]
+position = Vector2(2, -1)
+polygon = PackedVector2Array(221, 202, 276, 194, 377, 189, 493, 188, 568, 188, 662, 188, 733, 189, 783, 191, 828, 197, 911, 219, 942, 234, 966, 250, 984, 271, 995, 293, 999, 321, 998, 350, 991, 411, 982, 426, 961, 439, 939, 448, 907, 451, 879, 449, 851, 437, 819, 406, 788, 373, 724, 305, 678, 275, 625, 260, 584, 253, 543, 256, 503, 268, 459, 294, 407, 352, 367, 407, 343, 432, 316, 446, 298, 455, 278, 462, 261, 462, 243, 456, 197, 438, 176, 416, 156, 379, 151, 323, 158, 276, 169, 241, 188, 219)
+
+[connection signal="body_entered" from="Line2D/line" to="Lizard" method="_on_line_body_entered"]
+[connection signal="body_entered" from="AreaOuterGrass" to="Lizard" method="_on_area_outer_grass_body_entered"]
+[connection signal="body_exited" from="AreaOuterGrass" to="Lizard" method="_on_area_outer_grass_body_exited"]
+[connection signal="body_entered" from="AreaInnerGrass" to="Lizard" method="_on_area_inner_grass_body_entered"]
+[connection signal="body_exited" from="AreaInnerGrass" to="Lizard" method="_on_area_inner_grass_body_exited"]
