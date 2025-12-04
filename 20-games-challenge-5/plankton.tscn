@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dooryeq5x8ycr"]
+
+[ext_resource type="Script" uid="uid://h7k0e7135r2v" path="res://player.gd" id="1_p0dnv"]
+[ext_resource type="Texture2D" uid="uid://b7uuyt2yl1vi6" path="res://Tomopteriskils-c24245db923c42c59c3cbec5d0f8ece5-removebg-preview.png" id="1_uxlkg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0dnv"]
+
+[node name="Plankton" type="CharacterBody2D"]
+scale = Vector2(0.23897058, 0.23897058)
+script = ExtResource("1_p0dnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_p0dnv")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-0.145, 3.683)
+rotation = 0.061086524
+scale = Vector2(0.058546986, 0.07315316)
+texture = ExtResource("1_uxlkg")

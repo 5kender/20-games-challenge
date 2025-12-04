@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bussf6dh2ekl3"]
+
+[ext_resource type="Texture2D" uid="uid://qp2jg67hcga3" path="res://fish-blue-water-travel-vacation-34a3ce-removebg-preview.png" id="1_pbnkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10puu"]
+
+[node name="Jellyfish" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_10puu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.05, 0.14)
+rotation = 0.02617994
+scale = Vector2(0.15172413, 0.13414635)
+texture = ExtResource("1_pbnkl")
+region_enabled = true
+region_rect = Rect2(241, 126.5, 145, 164)

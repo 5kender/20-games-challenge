@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwif3ipxr0bpl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oh6kn"]
+radius = 2.0
+height = 63.66
+
+[node name="Wall" type="StaticBody2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-2, 0)
+polygon = PackedVector2Array(0, -2, 68, -2, 68, 2, 0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oh6kn")
